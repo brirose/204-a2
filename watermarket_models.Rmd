@@ -9,10 +9,64 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(here)
+library(janitor)
+library(broom)
 
 ```
 
 ```{r}
-water <- read_csv(here("HW2_Water.csv"))
+water <- read_csv(here("HW2_Water.csv")) %>% 
+  clean_names()
+
+```
+
+```{r}
+
+```
+
+
+```{r}
+agri <- lm(mc_agriculture ~ reduced_water_use_abatement, water)
+
+agri <- tidy(agri)
+
+meat <- tidy(lm(mc_meat ~ reduced_water_use_abatement, 
+     water))
+
+ind <- tidy(lm(mc_industrial ~ reduced_water_use_abatement, 
+     water))
+
+urban <- tidy(lm(mc_urban ~ reduced_water_use_abatement, 
+     water))
+
+```
+
+
+```{r}
+ggplot(water) +
+  geom_smooth(method = lm, 
+              aes(x = reduced_water_use_abatement,
+                  y = mc_agriculture),
+              se = FALSE,
+              color = "darkgreen") +
+  geom_smooth(method = lm, 
+              aes(x = reduced_water_use_abatement,
+                  y = mc_meat),
+              se = FALSE,
+              color = "darkred") +
+  geom_smooth(method = lm, 
+              aes(x = reduced_water_use_abatement,
+                  y = mc_industrial),
+              se = FALSE,
+              color = "black")+
+  geom_smooth(method = lm, 
+              aes(x = reduced_water_use_abatement,
+                  y = mc_urban),
+              se = FALSE,
+              color = "blueviolet")+
+  theme_minimal() +
+  labs(x = "Q (AF)",
+       y = "P ($/AF)")
+  
 ```
 
