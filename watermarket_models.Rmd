@@ -1,0 +1,18 @@
+---
+title: "Water Market Models"
+author: "Kelp"
+date: "4/15/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(here)
+
+```
+
+```{r}
+water <- read_csv(here("HW2_Water.csv"))
+```
+
