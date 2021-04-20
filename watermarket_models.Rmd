@@ -69,7 +69,7 @@ ggplot(water) +
               color = "black")+
      geom_text(label = "I",
             x = 155,
-            y = 148,
+            y = 125,
             color = "black")+
   geom_smooth(method = lm, 
               aes(x = reduced_water_use_abatement,
@@ -82,7 +82,8 @@ ggplot(water) +
             color = "blueviolet")+
   theme_minimal() +
   labs(x = "Q (AF)",
-       y = "P ($/AF)")
+       y = "P ($/AF)")+
+  ylim(0,150)
   
 ```
 
