@@ -16,11 +16,16 @@ library(broom)
 
 ```{r}
 water <- read_csv(here("HW2_Water.csv")) %>% 
-  clean_names()
+  clean_names() %>% 
+  mutate(TMAC = mc_agriculture +
+           mc_meat+
+           mc_industrial)
 
 ```
 
 ```{r}
+lm_tmac <- tidy(lm(TMAC ~ reduced_water_use_abatement, water))
+
 
 ```
 
