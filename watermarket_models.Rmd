@@ -87,3 +87,51 @@ ggplot(water) +
   
 ```
 
+```{r}
+## Graph demand curves
+demand <- tribble(~"water_use", ~"ag", ~"meat", ~"industrial", ~"urban",
+                  0, 88.636, 84.481, 233.093, 165.271,
+                  150, 12.136, 28.231, 63.593, 75.721)
+
+ggplot(demand) +
+  geom_smooth(method = lm, 
+              aes(x = water_use,
+                  y = ag),
+              se = FALSE,
+              color = "darkgreen")+
+  geom_text(label = "Ag",
+            x = 153,
+            y = 13,
+            color = "darkgreen")+
+  geom_smooth(method = lm, 
+              aes(x = water_use,
+                  y = meat),
+              se = FALSE,
+              color = "darkred") +
+     geom_text(label = "M",
+            x = 153,
+            y = 27,
+            color = "darkred")+
+  geom_smooth(method = lm, 
+              aes(x = water_use,
+                  y = industrial),
+              se = FALSE,
+              color = "black")+
+       geom_text(label = "I",
+            x = 153,
+            y = 63,
+            color = "black")+
+  geom_smooth(method = lm, 
+              aes(x = water_use,
+                  y = urban),
+              se = FALSE,
+              color = "blueviolet")+
+    geom_text(label = "U",
+            x = 153,
+            y = 75,
+            color = "blueviolet")+
+    theme_minimal()+
+  labs(x = "Q (AF)",
+       y = "P ($/AF)")
+```
+
